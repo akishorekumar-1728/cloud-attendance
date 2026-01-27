@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<style>
+body { font-family: Arial; background:#eef2ff; padding:30px; }
+table { width:100%; border-collapse:collapse; background:white; }
+th, td { padding:12px; border-bottom:1px solid #ddd; }
+th { background:#2a5298; color:white; }
+</style>
+</head>
+<body>
+
+<h2>Admin Dashboard</h2>
+
+<a href="/view_attendance">Refresh Attendance</a>
+
+<table>
+<tr>
+    <th>Student Email</th>
+    <th>Timestamp</th>
+</tr>
+
+{% if records %}
+{% for row in records %}
+<tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+</tr>
+{% endfor %}
+{% endif %}
+
+</table>
+
+</body>
+</html>

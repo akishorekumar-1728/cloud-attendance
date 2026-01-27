@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Dashboard</title>
+<style>
+body {
+    font-family: Arial;
+    background:#f2f6ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box {
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+button {
+    padding:12px 25px;
+    margin-top:10px;
+    background:#1e3c72;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Teacher Dashboard</h2>
+    <form action="/generate_otp" method="POST">
+        <button type="submit">Generate OTP</button>
+    </form>
+    <br>
+    <a href="/view_attendance">View Attendance</a>
+</div>
+
+</body>
+</html>

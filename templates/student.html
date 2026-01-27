@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard</title>
+<style>
+body {
+    font-family: Arial;
+    background: #e8f0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+input, button {
+    padding: 12px;
+    margin-top: 10px;
+    width: 100%;
+}
+button {
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Student Attendance</h2>
+    <form action="/submit_otp" method="POST">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="text" name="otp" placeholder="Enter OTP" required>
+        <button type="submit">Submit OTP</button>
+    </form>
+</div>
+
+</body>
+</html>

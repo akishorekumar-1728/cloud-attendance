@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloud Attendance Login</title>
+<select name="role" required>
+    <option value="">Select Role</option>
+    <option value="admin">Admin</option>
+    <option value="teacher">Teacher</option>
+    <option value="student">Student</option>
+</select>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: white;
+    width: 350px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2a5298;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2a5298;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1e3c72;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: gray;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>Attendance Login</h2>
+
+    <form method="POST">
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+        </select>
+
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="footer-text">
+        Cloud-Based Attendance System
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+name: CI-CD Azure VM Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Azure VM via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_VM_IP }}
+          username: ${{ secrets.AZURE_VM_USER }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          script: |
+            docker rm -f cloud-attendance || true
+            rm -rf cloud-attendance
+            git clone https://github.com/akishorekumar-1728/cloud-attendance.git
+            cd cloud-attendance
+            docker build -t cloud-attendance-app .
+            docker run -d -p 80:5000 --name cloud-attendance cloud-attendance-app
+

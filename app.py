@@ -76,7 +76,7 @@ def submit_otp():
 
     if data:
         db_otp, created = data
-        if otp == db_otp and int(time.time()) - created <= 30:
+        if otp == db_otp and int(time.time()) - created <= 60:
             cur.execute(
                 "INSERT INTO attendance VALUES (?, ?)",
                 (email, int(time.time()))

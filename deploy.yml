@@ -1,43 +1,28 @@
-name: CI/CD Pipeline
+name: CI-CD Azure VM Deployment
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.10
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Build Docker Image
-      run: |
-        docker build -t cloud-attendance-app .
-
-    - name: Test Docker Image (Optional)
-      run: |
-        docker run --rm cloud-attendance-app python -c "print('Docker test OK')"
-
-    - name: Deploy to Azure VM
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.AZURE_VM_IP }}
-        username: ${{ secrets.AZURE_VM_USER }}
-        key: ${{ secrets.AZURE_VM_SSH_KEY }}
-        script: |
-          docker stop attendance_container || true
-          docker rm attendance_container || true
-          docker pull cloud-attendance-app || true
-          docker run -d -p 5000:5000 --name attendance_container cloud-attendance-app
+      - name: Deploy to Azure VM via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_VM_IP }}
+          username: ${{ secrets.AZURE_VM_USER }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          script: |
+            docker rm -f cloud-attendance || true
+            rm -rf cloud-attendance
+            git clone https://github.com/akishorekumar-1728/cloud-attendance.git
+            cd cloud-attendance
+            docker build -t cloud-attendance-app .
+            docker run -d -p 80:5000 --name cloud-attendance cloud-attendance-app

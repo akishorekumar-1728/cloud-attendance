@@ -3,12 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Cloud Attendance Login</title>
-<select name="role" required>
-    <option value="">Select Role</option>
-    <option value="admin">Admin</option>
-    <option value="teacher">Teacher</option>
-    <option value="student">Student</option>
-</select>
 
 <style>
 body {
@@ -23,10 +17,16 @@ body {
 
 .login-box {
     background: white;
-    width: 350px;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    width: 360px;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+    animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .login-box h2 {
@@ -38,10 +38,15 @@ body {
 input, select {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
+    margin: 12px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 14px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #2a5298;
 }
 
 button {
@@ -54,6 +59,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -62,7 +68,7 @@ button:hover {
 
 .footer-text {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 18px;
     font-size: 13px;
     color: gray;
 }
@@ -77,11 +83,13 @@ button:hover {
     <form method="POST">
         <select name="role" required>
             <option value="">Select Role</option>
+            <option value="admin">Admin</option>
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
         </select>
 
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+
         <input type="password" name="password" placeholder="Password" required>
 
         <button type="submit">Login</button>

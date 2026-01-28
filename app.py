@@ -61,7 +61,7 @@ def generate_otp():
     conn.commit()
     conn.close()
 
-    return f"OTP Generated: {otp} (valid 30 seconds)"
+    return f"OTP Generated: {otp} (valid 60 seconds)"
 
 # ---------- STUDENT SUBMIT ----------
 @app.route("/submit_otp", methods=["POST"])

@@ -1,41 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Teacher Dashboard</title>
+
 <style>
 body {
-    font-family: Arial;
-    background:#f2f6ff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.box {
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    text-align:center;
+
+.dashboard {
+    background: white;
+    width: 420px;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+    text-align: center;
+    animation: fadeIn 0.6s ease;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard h2 {
+    margin-bottom: 25px;
+    color: #2a5298;
+}
+
 button {
-    padding:12px 25px;
-    margin-top:10px;
-    background:#1e3c72;
-    color:white;
-    border:none;
-    border-radius:8px;
+    width: 100%;
+    padding: 14px;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background: #1e3c72;
+}
+
+.link-btn {
+    display: block;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #2a5298;
+    color: #2a5298;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.link-btn:hover {
+    background: #2a5298;
+    color: white;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 13px;
+    color: gray;
 }
 </style>
 </head>
+
 <body>
 
-<div class="box">
-    <h2>Teacher Dashboard</h2>
+<div class="dashboard">
+    <h2>👨‍🏫 Teacher Dashboard</h2>
+
     <form action="/generate_otp" method="POST">
         <button type="submit">Generate OTP</button>
     </form>
-    <br>
-    <a href="/view_attendance">View Attendance</a>
+
+    <a class="link-btn" href="/view_attendance">View Attendance</a>
+
+    <div class="footer">
+        Cloud-Based Attendance System
+    </div>
 </div>
 
 </body>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form">
+  <h2>Create Account</h2>
+  <p class="hint">
+    Students register using class code. Teachers register using department.
+  </p>
+
+  {% if error %}
+    <div class="alert bad">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST">
+
+    <div class="field">
+      <label>Name</label>
+      <input name="name" placeholder="Full name" required>
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="name@example.com" required>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input name="password" type="password" placeholder="Create password" required>
+    </div>
+
+    <div class="field">
+      <label>Role</label>
+      <select name="role" required onchange="toggleFields(this.value)">
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+    </div>
+
+    <!-- Student -->
+    <div id="student_field" style="display:none;">
+      <div class="field">
+        <label>Class Code</label>
+        <input name="class_code" placeholder="Example: CSE123">
+      </div>
+    </div>
+
+    <!-- Teacher -->
+    <div id="teacher_field" style="display:none;">
+      <div class="field">
+        <label>Department</label>
+        <input name="dept" placeholder="Example: CSE">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Create Account</button>
+      <a class="btn" href="/">Back to Login</a>
+    </div>
+
+  </form>
+</div>
+
+<script>
+function toggleFields(role) {
+  document.getElementById("student_field").style.display =
+    (role === "student") ? "block" : "none";
+
+  document.getElementById("teacher_field").style.display =
+    (role === "teacher") ? "block" : "none";
+}
+</script>
+{% endblock %}

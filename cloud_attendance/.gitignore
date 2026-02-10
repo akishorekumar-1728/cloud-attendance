@@ -1,0 +1,29 @@
+# ===== Secrets & Keys =====
+*.pem
+*.key
+*.env
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Python cache =====
+__pycache__/
+*.pyc
+
+# ===== Virtual environments =====
+venv/
+.venv/
+.env/
+
+# ===== VS Code =====
+.vscode/
+
+# ===== OS files =====
+Thumbs.db
+.DS_Store
+
+# ===== Ignore exported HTML folder if exists =====
+Cloud Attendance System.html
+Cloud Attendance System_files/

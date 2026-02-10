@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+  <h3>Schedule for {{ c["name"] }} ({{ c["class_code"] }})</h3>
+
+  <form method="POST" style="margin-top:12px;">
+    <div class="grid3">
+      <div class="field">
+        <label>Day</label>
+        <select name="day" required>
+          <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+          <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Start</label>
+        <input type="time" name="start_time" required>
+      </div>
+      <div class="field">
+        <label>End</label>
+        <input type="time" name="end_time" required>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Add Schedule</button>
+      <a class="btn" href="/admin/classes">Back</a>
+    </div>
+  </form>
+</div>
+
+<div class="card" style="margin-top:14px;">
+  <h3>Current Schedule</h3>
+  <table class="table">
+    <tr><th>Day</th><th>Start</th><th>End</th></tr>
+    {% for s in schedule %}
+      <tr><td>{{ s["day"] }}</td><td>{{ s["start_time"] }}</td><td>{{ s["end_time"] }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

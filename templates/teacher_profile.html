@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Teacher Profile</h3>
+  <p><b>Name:</b> {{ user["name"] }}</p>
+  <p><b>Email:</b> {{ user["email"] }}</p>
+  <p><b>Department:</b> {{ prof["dept"] if prof else "-" }}</p>
+</div>
+{% endblock %}

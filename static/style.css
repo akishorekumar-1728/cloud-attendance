@@ -1,0 +1,435 @@
+:root {
+  --bg1: #061a3a;
+  --bg2: #0b2e66;
+  --panel: #0f2d5a;
+  --card: #ffffff;
+  --text: #0d1b2a;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --btn: #2563eb;
+  --btn2: #1e40af;
+  --good: #16a34a;
+  --bad: #dc2626;
+}
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
+  background: radial-gradient(
+    1200px 700px at 15% 10%,
+    #163b7a 0%,
+    var(--bg1) 40%,
+    #041022 100%
+  );
+  color: #eaf2ff;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 16px;
+}
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 12px;
+}
+.brand-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.brand h1 {
+  font-size: 16px;
+  margin: 0;
+}
+.brand p {
+  font-size: 12px;
+  margin: 2px 0 0;
+  opacity: 0.8;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.nav a {
+  text-decoration: none;
+  color: #eaf2ff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.2s;
+}
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.nav a.active {
+  background: rgba(37, 99, 235, 0.25);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.sidebar-footer {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 18px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.sub {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pill {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Content */
+.content {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Cards + tables */
+.card {
+  background: var(--card);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.table th,
+.table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-size: 14px;
+}
+.table th {
+  background: #f3f6ff;
+  color: #0b2e66;
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eaf2ff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.btn.primary {
+  background: var(--btn);
+  border-color: rgba(37, 99, 235, 0.6);
+}
+.btn.primary:hover {
+  background: var(--btn2);
+}
+
+/* Alerts */
+.alert {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+.alert.good {
+  background: #dcfce7;
+  color: #14532d;
+  border: 1px solid #bbf7d0;
+}
+.alert.bad {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border: 1px solid #fecaca;
+}
+
+/* Forms */
+.field {
+  margin-top: 12px;
+}
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #374151;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 14px;
+}
+.field input:focus,
+.field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ✅ Login page center + compact card */
+.auth-wrap {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px; /* ✅ this makes it not too big */
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  border-radius: 20px;
+  padding: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.25);
+}
+
+.auth-head h2 {
+  margin: 0;
+  font-size: 22px;
+}
+.auth-head p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.auth-form {
+  margin-top: 12px;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.auth-actions .btn {
+  flex: 1;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #0b2e66;
+  background: #ffffff;
+}
+.auth-actions .btn.primary {
+  color: white;
+}
+
+.auth-foot {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .main {
+    padding: 14px;
+  }
+  .content {
+    max-width: 100%;
+  }
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #e7e7e7;
+  text-align: left;
+}
+/* ===== AUTH BUTTONS ===== */
+.auth-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.auth-actions .btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ===== FORCE BLUE BUTTONS (LOGIN/REGISTER) ===== */
+.auth-actions .btn,
+.auth-actions button.btn {
+  flex: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Login button */
+.auth-actions .btn.primary,
+.auth-actions button.btn.primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.auth-actions .btn.primary:hover,
+.auth-actions button.btn.primary:hover {
+  background: #1d4ed8 !important;
+}
+
+/* Register button */
+.auth-actions a.btn {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.auth-actions a.btn:hover {
+  background: #2563eb !important;
+}
+/* ===== Improve form label visibility (Register + Login) ===== */
+.auth-card label,
+.auth-form label,
+.field label {
+  color: #e5edff; /* light readable blue-white */
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+  letter-spacing: 0.2px;
+}
+
+/* Optional: make placeholders slightly softer */
+.field input::placeholder,
+.field select::placeholder {
+  color: #94a3b8; /* soft gray-blue */
+}
+
+/* Improve select text color */
+.field select {
+  color: #0f172a; /* dark readable text */
+}
+
+/* Input focus glow (nice UX) */
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}

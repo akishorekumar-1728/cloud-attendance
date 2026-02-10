@@ -1,100 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Student Dashboard</title>
+{% extends "base.html" %}
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(120deg, #1e3c72, #2a5298);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+{% block content %}
+<h2 style="margin-top:0;">Student Dashboard</h2>
+<p class="hint">Enter the OTP shared by your teacher to mark attendance.</p>
 
-.dashboard {
-    background: white;
-    width: 420px;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.25);
-    text-align: center;
-    animation: fadeIn 0.6s ease;
-}
+{% if success %}
+  <div class="alert good">Attendance Marked ✅</div>
+{% elif error %}
+  <div class="alert bad">Invalid / Expired OTP ❌</div>
+{% endif %}
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+<div class="card">
+  <h3>Mark Attendance</h3>
+  <p>OTP is valid only for a short time.</p>
 
-.dashboard h2 {
-    margin-bottom: 20px;
-    color: #2a5298;
-}
-
-.info {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    text-align: center;
-    letter-spacing: 3px;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    background: #2a5298;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #1e3c72;
-}
-
-.footer {
-    margin-top: 18px;
-    font-size: 13px;
-    color: gray;
-}
-</style>
-</head>
-
-<body>
-
-<div class="dashboard">
-    <h2>🎓 Student Attendance</h2>
-
-    <div class="info">
-        Enter the OTP shared by your teacher
+  <form action="/submit_otp" method="POST" style="margin-top:12px;">
+    <div class="field">
+      <label>Enter OTP</label>
+      <input type="text" name="otp" placeholder="Enter 6-digit OTP" required>
     </div>
 
-    <form action="/submit_otp" method="POST">
-        <input type="hidden" name="email" value="{{ email }}">
-        <input type="text" name="otp" placeholder="Enter OTP" required>
-        <button type="submit">Submit OTP</button>
-    </form>
-
-    <div class="footer">
-        Cloud-Based Attendance System
+    <div class="actions">
+      <button class="btn primary" type="submit">Submit OTP</button>
     </div>
+  </form>
+
+  <div id="timerBox" class="pill" style="margin-top:12px; display:inline-block;">
+    OTP valid for <span id="timer">60</span> sec
+  </div>
 </div>
 
-</body>
-</html>
+<script>
+let timeLeft = 60;
+const timerEl = document.getElementById("timer");
+const timerBox = document.getElementById("timerBox");
+
+setInterval(() => {
+  timeLeft--;
+  if (timeLeft <= 0) {
+    timerEl.innerText = "0";
+    timerBox.innerText = "OTP expired ❌";
+    return;
+  }
+  timerEl.innerText = timeLeft;
+}, 1000);
+</script>
+
+<div class="small-link">
+  Next: Profile • Schedule • Attendance history (Step 3)
+</div>
+{% endblock %}

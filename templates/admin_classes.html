@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+  <h3>Create Class</h3>
+
+  {% if error %}
+    <div class="alert bad">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST" style="margin-top:12px;">
+    <div class="grid2">
+      <div class="field">
+        <label>Class Name</label>
+        <input name="name" placeholder="IT-B" required>
+      </div>
+      <div class="field">
+        <label>Department</label>
+        <input name="dept" placeholder="IT" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Class Code</label>
+      <input name="class_code" placeholder="IT456" required>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Create</button>
+    </div>
+  </form>
+</div>
+
+<div class="card" style="margin-top:14px;">
+  <h3>All Classes</h3>
+
+  <table class="table">
+    <tr>
+      <th>Name</th><th>Dept</th><th>Code</th><th>Action</th>
+    </tr>
+
+    {% for c in classes %}
+    <tr>
+      <td>{{ c["name"] }}</td>
+      <td>{{ c["dept"] }}</td>
+      <td>{{ c["class_code"] }}</td>
+      <td>
+        <a class="btn" href="/admin/schedule/{{ c['id'] }}">Manage Schedule</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

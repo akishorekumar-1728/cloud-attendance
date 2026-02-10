@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Attendance History</h3>
+
+  {% if records %}
+    <table class="table">
+      <tr><th>Class</th><th>Time</th></tr>
+      {% for r in records %}
+        <tr>
+          <td>{{ r["class"] }}</td>
+          <td>{{ r["time"] }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No attendance records yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

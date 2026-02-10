@@ -1,132 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Admin Dashboard</title>
+{% extends "base.html" %}
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(120deg, #1e3c72, #2a5298);
-    min-height: 100vh;
-    padding: 30px;
-}
+{% block content %}
+<h2 style="margin-top:0;">Admin Dashboard</h2>
+<p class="hint">Manage and monitor attendance activity.</p>
 
-/* Card */
-.card {
-    background: white;
-    max-width: 1000px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.25);
-    animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    color: #2a5298;
-}
-
-.refresh-btn {
-    padding: 10px 18px;
-    background: #2a5298;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.refresh-btn:hover {
-    background: #1e3c72;
-}
-
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th {
-    background: #2a5298;
-    color: white;
-    padding: 14px;
-    text-align: left;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
-}
-
-tr:hover {
-    background: #f3f6ff;
-}
-
-.empty {
-    text-align: center;
-    padding: 20px;
-    color: gray;
-}
-
-.footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 13px;
-    color: gray;
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-    <div class="header">
-        <h2>📊 Admin Dashboard</h2>
-        <a class="refresh-btn" href="/view_attendance">Refresh</a>
+<div class="grid">
+  <div class="card span-4">
+    <h3>Quick Actions</h3>
+    <p>Refresh dashboard and view recent logs.</p>
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+      <a class="btn primary" href="/admin">Refresh</a>
+      <a class="btn" href="/logout">Logout</a>
     </div>
+  </div>
 
-    <table>
-        <tr>
+  <div class="card span-8">
+    <h3>Recent Attendance</h3>
+    <p>Latest 200 attendance records.</p>
+
+    <div style="margin-top:12px;">
+      <table class="table">
+        <thead>
+          <tr>
             <th>Student Email</th>
+            <th>Class ID</th>
             <th>Timestamp</th>
-        </tr>
-
-        {% if records %}
+          </tr>
+        </thead>
+        <tbody>
+          {% if records %}
             {% for row in records %}
             <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
+              <td>{{ row["email"] }}</td>
+              <td>{{ row["class_id"] }}</td>
+              <td>{{ row["timestamp"] }}</td>
             </tr>
             {% endfor %}
-        {% else %}
+          {% else %}
             <tr>
-                <td colspan="2" class="empty">No attendance records found</td>
+              <td colspan="3">No attendance records found</td>
             </tr>
-        {% endif %}
-    </table>
-
-    <div class="footer">
-        Cloud-Based Attendance System
+          {% endif %}
+        </tbody>
+      </table>
     </div>
-
+  </div>
 </div>
 
-</body>
-</html>
+<div class="small-link">
+  Next: Admin can manage Classes • Schedules • Teacher-Class mapping (Step 5)
+</div>
+{% endblock %}

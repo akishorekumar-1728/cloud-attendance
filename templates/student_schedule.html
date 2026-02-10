@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>My Schedule</h3>
+
+  {% if schedule %}
+    <table class="table">
+      <tr><th>Day</th><th>Start</th><th>End</th></tr>
+      {% for s in schedule %}
+        <tr>
+          <td>{{ s["day"] }}</td>
+          <td>{{ s["start_time"] }}</td>
+          <td>{{ s["end_time"] }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No schedule found for your class.</p>
+  {% endif %}
+</div>
+{% endblock %}

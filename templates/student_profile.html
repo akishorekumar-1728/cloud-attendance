@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>My Profile</h3>
+  <p><b>Name:</b> {{ user["name"] }}</p>
+  <p><b>Email:</b> {{ user["email"] }}</p>
+
+  {% if class_info %}
+    <hr>
+    <p><b>Class:</b> {{ class_info["class_name"] }}</p>
+    <p><b>Dept:</b> {{ class_info["dept"] }}</p>
+    <p><b>Class Code:</b> {{ class_info["class_code"] }}</p>
+  {% endif %}
+</div>
+{% endblock %}

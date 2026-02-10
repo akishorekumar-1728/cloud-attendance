@@ -1,0 +1,33 @@
+# ===== Secrets & Keys =====
+*.pem
+*.key
+*.env
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Python cache =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ===== Virtual environment =====
+venv/
+.env/
+.venv/
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Docker =====
+*.log
+
+# ===== VS Code =====
+.vscode/
+
+# ===== Azure / Temp =====
+cloud-attendance/

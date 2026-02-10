@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title or "Cloud Attendance" }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-badge">CA</div>
+          <div>
+            <h1>Cloud Attendance</h1>
+            <p>Azure VM • OTP-based</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          {% if session.get("role") == "student" %}
+          <a
+            href="/student"
+            class="{{ 'active' if request.path == '/student' else '' }}"
+            >🏠 Dashboard</a
+          >
+          <a
+            href="/student/profile"
+            class="{{ 'active' if request.path == '/student/profile' else '' }}"
+            >👤 Profile</a
+          >
+          <a
+            href="/student/schedule"
+            class="{{ 'active' if request.path == '/student/schedule' else '' }}"
+            >📅 Schedule</a
+          >
+          <a
+            href="/student/attendance"
+            class="{{ 'active' if request.path == '/student/attendance' else '' }}"
+            >✅ Attendance</a
+          >
+
+          {% elif session.get("role") == "teacher" %}
+          <a
+            href="/teacher"
+            class="{{ 'active' if request.path == '/teacher' else '' }}"
+            >🏠 Dashboard</a
+          >
+          <a
+            href="/teacher/profile"
+            class="{{ 'active' if request.path == '/teacher/profile' else '' }}"
+            >👤 Profile</a
+          >
+          <a
+            href="/teacher/classes"
+            class="{{ 'active' if request.path.startswith('/teacher/classes') else '' }}"
+            >🏫 Classes</a
+          >
+
+          {% elif session.get("role") == "admin" %}
+          <a
+            href="/admin"
+            class="{{ 'active' if request.path == '/admin' else '' }}"
+            >📊 Dashboard</a
+          >
+          <a
+            href="/admin/classes"
+            class="{{ 'active' if request.path.startswith('/admin/classes') else '' }}"
+            >🏫 Manage Classes</a
+          >
+          <a
+            href="/admin/teachers"
+            class="{{ 'active' if request.path.startswith('/admin/teachers') else '' }}"
+            >👨‍🏫 Assign Teachers</a
+          >
+
+          {% else %}
+          <a href="/">🔐 Login</a>
+          <a href="/register">📝 Register</a>
+          {% endif %}
+        </nav>
+
+        <div class="sidebar-footer">
+          {% if session.get("email") %} Logged in as
+          <b>{{ session.get("email") }}</b><br />
+          Role: <b>{{ session.get("role") }}</b>
+          {% else %} Not logged in {% endif %}
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="title">{{ header or "Dashboard" }}</div>
+            <div class="sub">{{ subheader or "Manage attendance easily" }}</div>
+          </div>
+
+          <div class="topbar-right">
+            {% if session.get("role") %}
+            <div class="pill">{{ session.get("role")|upper }}</div>
+            <a class="btn" href="/logout">Logout</a>
+            {% else %}
+            <a class="btn" href="/">Login</a>
+            {% endif %}
+          </div>
+        </div>
+
+        <section class="content">{% block content %}{% endblock %}</section>
+      </main>
+    </div>
+  </body>
+</html>
